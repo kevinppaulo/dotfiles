@@ -1,0 +1,99 @@
+conky.config = {
+--##  Begin Window Settings  #####################
+own_window = true,
+own_window_type = 'override',
+own_window_transparent = true,
+own_window_hints = 'undecorated,below,skip_taskbar,skip_pager',
+own_window_colour = '#000000',
+own_window_class = 'Conky',
+own_window_title = 'Lamentis Conky',
+
+minimum_width = 220, 
+minimum_height = 250,
+
+gap_x = 25,--## left | right
+gap_y = 25,--## up | down
+
+alignment = 'top_right',
+
+-- Use Xft (anti-aliased font and stuff)
+use_xft = true,
+font = 'Roboto Regular:size=10',
+-- Alpha of Xft font. Must be a value at or between 1 and 0 ###
+xftalpha = 1,
+override_utf8_locale = true,
+uppercase = false,
+
+--##  Colour Settings  ###########################
+draw_shades = false,--yes
+default_shade_color = 'black',
+draw_outline = false,-- amplifies text if yes
+default_outline_color = 'black',
+
+default_color = '#ffffff',-- White
+color0 = '#444444',-- Black
+color1 = '#ee6f31',-- Orange
+
+--##  Borders Section  ###
+draw_borders = false,
+-- Stippled borders?
+stippled_borders = 5,
+-- border margins
+border_inner_margin = 20,
+border_outer_margin = 0,
+-- border width
+border_width = 2,
+-- graph borders
+draw_graph_borders = false,
+
+--##  Miscellaneous Section  #####################
+-- Boolean value, if true, Conky will be forked to background when started.
+background = true,
+-- Adds spaces around certain objects to stop them from moving other things
+-- around, this only helps if you are using a mono font
+-- Options: right, left or none
+use_spacer = 'none',
+
+-- Default and Minimum size is 256 - needs more for single commands that
+-- "call" a lot of text IE: bash scripts
+--text_buffer_size 6144
+
+-- Subtract (file system) buffers from used memory?
+no_buffers = true,
+
+-- change GiB to G and MiB to M
+short_units = true,
+
+-- Like it says, ot pads the decimals on % values
+-- doesn't seem to work since v1.7.1
+pad_percents = 2,
+
+-- Imlib2 image cache size, in bytes. Default 4MiB Increase this value if you use
+-- $image lots. Set to 0 to disable the image cache.
+-- imlib_cache_size = 0,
+
+-- Use the Xdbe extension? (eliminates flicker)
+-- It is highly recommended to use own window with this one
+-- so double buffer won't be so big.
+double_buffer = true,
+
+--   Maximum size of user text buffer, i.e. layout below TEXT line in config file
+--  (default is 16384 bytes)
+-- max_user_text 16384
+
+-- Desired output unit of all objects displaying a temperature. Parameters are
+-- either "fahrenheit" or "celsius". The default unit is degree Celsius.
+-- temperature_unit Celsius
+--################  End Miscellaneous Section  ###
+
+update_interval = 1,
+};
+
+conky.text = [[
+$alignr Olá, ${execi 60 whoami}
+$alignr ${color1}${font M+ 1mn:size=24}${time %H:%M}${font}${color}
+${voffset 5}
+$alignr Hoje o tempo está ${execi 1800 ~/.config/conky/lamentis/res/weather}
+$alignr ${execi 1800 ~/.config/conky/lamentis/res/weather -t}
+${voffset 1}
+]];

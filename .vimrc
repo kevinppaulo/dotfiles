@@ -1,3 +1,4 @@
+hi Normal guibg=NONE ctermbg=NONE
 set nocompatible
 filetype off
 syntax on
@@ -56,7 +57,8 @@ set termguicolors     " enable true colors support
 colorscheme ayu
 
 " My Remaps
- nnoremap <C-b> :NERDTreeToggle<CR>
- nnoremap <C-p> :GFiles<CR>
+nnoremap <C-b> :NERDTreeToggle<CR>
+nnoremap <C-p> :GFiles<CR>
+nnoremap ç @
+vnoremap <leader>p "_dP
 
-hi Normal guibg=NONE ctermbg=NONE

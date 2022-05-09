@@ -8,8 +8,10 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 1
-default_floating_border normal
+default_border pixel 0
+# default_border none
+# default_floating_border normal
+default_floating_border none
 
 # Hide borders
 hide_edge_borders none
@@ -27,16 +29,18 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 # start file browser
-bindsym $mod+n exec nautilus
+bindsym $mod+n exec thunar
+# bindsym $mod+n exec kitty -e 'vifm' 
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency
+# bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod+d exec --no-startup-id rofi -show run
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -45,11 +49,11 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
+#exec --no-startup-id volumeicon
+#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+exec --no-startup-id start-pulseaudio-x11
+exec --no-startup-id pa-applet
+bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
@@ -59,12 +63,14 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec palemoon
+bindsym $mod+F1 exec --no-startup-id bash ~/.screenlayout/edp.sh
+bindsym $mod+F2 exec --no-startup-id bash ~/.screenlayout/hdmi.sh
 bindsym $mod+F3 exec pcmanfm
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
+bindsym $mod+Ctrl+p exec --no-startup-id bash ~/.config/polybar/panels/launch.sh
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
@@ -113,8 +119,8 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+s exec flameshot gui
 
 # change container layout (stacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking
-# bindsym $mod+w layout tabbed
+bindsym $mod+x layout stacking
+bindsym $mod+w layout tabbed
 # bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -190,7 +196,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 # assign [class="Skype"] $ws5
 
 # Open specific applications in floating mode
-for_window [title="alsamixer"] floating enable border pixel 1
+for_window [title="alsamixer"] floating enable border none
 for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
@@ -217,6 +223,7 @@ for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+# for_window [class="^.*"] border pixel 1
 for_window [class="^.*"] border pixel 1
 
 # switch to workspace with urgent window automatically
@@ -274,6 +281,7 @@ bindsym $mod+9 exec --no-startup-id blurlock
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id bash ~/.config/polybar/panels/launch.sh
 #exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
@@ -320,42 +328,42 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
-bar {
-	i3bar_command i3bar
-	status_command i3status
-	position bottom
+# bar {
+# 	i3bar_command i3bar
+# 	status_command i3status
+# 	position bottom
 
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
+# ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+# #	tray_output primary
+# #	tray_output eDP1
 
-	bindsym button4 nop
-	bindsym button5 nop
-#   font xft:URWGothic-Book 11
-	strip_workspace_numbers yes
+# 	bindsym button4 nop
+# 	bindsym button5 nop
+# #   font xft:URWGothic-Book 11
+# 	strip_workspace_numbers yes
 
-    colors {
-        background #0A0E14
-        statusline #F9FAF9
-        separator  #454947
+#     colors {
+#         background #0A0E14
+#         statusline #F9FAF9
+#         separator  #454947
 
-#                          border  backgr. text
-        focused_workspace  #F9FAF9 #EE6F31 #222222
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #222D31 #EEE8D5
-        binding_mode       #16a085 #2C2C2C #F9FAF9
-        urgent_workspace   #16a085 #FDF6E3 #E5201D
-    }
-}
+# #                          border  backgr. text
+#         focused_workspace  #F9FAF9 #EE6F31 #222222
+#         active_workspace   #595B5B #353836 #FDF6E3
+#         inactive_workspace #595B5B #222D31 #EEE8D5
+#         binding_mode       #16a085 #2C2C2C #F9FAF9
+#         urgent_workspace   #16a085 #FDF6E3 #E5201D
+#     }
+# }
 
-# hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
+# # hide/unhide i3status bar
+# bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3
-  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+  client.focused          #4C566A #4C566A #80FFF9 #FDF6E3
+  client.focused_inactive #3B4252 #3B4252 #1ABC9C #454948
+  client.unfocused        #3B4252 #3B4252 #1ABC9C #454948
   client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
   client.placeholder      #000000 #0c0c0c #ffffff #000000 
 
@@ -366,8 +374,8 @@ bindsym $mod+m bar mode toggle
 #############################
 
 # Set inner/outer gaps
-gaps inner 40
-gaps outer 20
+gaps inner 10
+gaps outer 30
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -375,17 +383,22 @@ gaps outer 20
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
+# smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
+# smart_borders off
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+
 bindsym $mod+Shift+g mode "$mode_gaps"
+
+bindsym $mod+Ctrl+comma gaps outer current set 140
+bindsym $mod+Ctrl+period gaps outer current set 30
+
 
 mode "$mode_gaps" {
         bindsym o      mode "$mode_gaps_outer"

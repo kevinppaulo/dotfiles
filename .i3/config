@@ -29,12 +29,12 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 # start file browser
-bindsym $mod+n exec thunar
+bindsym $mod+n exec nautilus
 # bindsym $mod+n exec kitty -e 'vifm' 
 
 # start a terminal
 bindsym $mod+Return exec kitty
-
+bindsym $mod+Shift+Return exec kitty --class floatingTerm
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -196,12 +196,16 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 # assign [class="Skype"] $ws5
 
 # Open specific applications in floating mode
+for_window [class="floatingTerm"] floating enable
+for_window [class="floatingTerm"] resize set 600 300
+for_window [class="floatingTerm"] move position center
 for_window [title="alsamixer"] floating enable border none
 for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
 for_window [class="fpakman"] floating enable
 for_window [class="Galculator"] floating enable border pixel 1
+for_window [class="Dunst"] border pixel 1
 for_window [class="GParted"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
@@ -287,6 +291,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
+exec --no-startup-id wal -R
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id conky -c ~/.config/conky/lamentis/lamentis.conkyrc
@@ -361,9 +366,9 @@ set_from_resource $term_color15    color15
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #4C566A #4C566A #80FFF9 #FDF6E3
-  client.focused_inactive #3B4252 #3B4252 #1ABC9C #454948
-  client.unfocused        #3B4252 #3B4252 #1ABC9C #454948
+  client.focused          #2C2C2C #2C2C2C #80FFF9 #FDF6E3
+  client.focused_inactive #0F0F0F #0F0F0F #1ABC9C #454948
+  client.unfocused        #0F0F0F #0F0F0F #1ABC9C #454948
   client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
   client.placeholder      #000000 #0c0c0c #ffffff #000000 
 

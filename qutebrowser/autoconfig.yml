@@ -142,4 +142,4 @@ settings:
     global:
       DEFAULT: https://google.com/search?q={}
   url.start_pages:
-    global: https://kevinppaulo.github.io/Bento
+    global: https://start.duckduckgo.com

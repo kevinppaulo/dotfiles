@@ -1,5 +1,5 @@
 admin http://localhost:8000/admin/
-cmp http://localhost:8000/composer/
+cmp http://localhost/composer/
 git https://github.com/
 music https://music.youtube.com/
 ig https://www.instagram.com/
@@ -21,3 +21,6 @@ rain https://rainymood.com/audio1112/0.m4a
 vid https://invidious-us.kavin.rocks/feed/subscriptions
 hpp https://hoppscotch.io/
 mem https://rastreio.frenet.com.br/COR/QL303303851BR
+send http://localhost:8000/api/v1/send/
+br https://rchan.fun/b/index.html
+vsc https://vhschan.org/b/

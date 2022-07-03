@@ -55,12 +55,12 @@ context = ctrl+shift+period
 [urgency_low]
 timeout = 3
 background = "#1C1C1C"
-foreground = "{foreground}"
+foreground = "#f9f9f9"
 
 [urgency_normal]
 timeout = 6
 background = "#1C1C1C"
-foreground = "{foreground}"
+foreground = "#f9f9f9"
 
 [urgency_critical]
 timeout = 0

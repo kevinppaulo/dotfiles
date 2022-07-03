@@ -114,6 +114,8 @@ settings:
   qt.environ:
     global:
       NODE_PATH: /usr/lib/node_modules
+  scrolling.smooth:
+    global: true
   statusbar.padding:
     global:
       bottom: 1

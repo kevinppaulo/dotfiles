@@ -1,2 +1,2 @@
 /* Dark theme. */
-@import "~/.cache/wal/colors-rofi-dark"
+@import "./themes/nord.rasi"

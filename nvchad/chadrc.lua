@@ -6,26 +6,34 @@ local override = require("custom.override")
 -- example of changing theme:
 
 M.ui = {
-   theme = "rxyhn",
+   theme = "radium",
 }
 
 M.mappings = {
-  bufferline = {
-   n = {
-      ["L"] = { "<cmd> BufferLineCycleNext <CR>", "  cycle next buffer" },
-      ["H"] = { "<cmd> BufferLineCyclePrev <CR>", "  cycle prev buffer" },
 
-      -- close buffer + hide terminal buffer
-      ["<leader>c"] = {
-         function()
-            require("core.utils").close_buffer()
-         end,
-         "   close buffer",
-      },
-   },
+
+  tabufline = {
+    n = {
+        -- new buffer
+        ["<C-n>"] = { "<cmd> enew <CR>", "烙 new buffer" },
+
+        -- cycle through buffers
+        ["L"] = { "<cmd> Tbufnext <CR>", "  goto next buffer" },
+        ["H"] = { "<cmd> Tbufprev <CR> ", "  goto prev buffer" },
+
+        -- cycle through tabs
+        ["<leader>tp"] = { "<cmd> tabprevious <CR>", "  goto next tab" },
+        ["<leader>tn"] = { "<cmd> tabnext <CR> ", "  goto prev tab" },
+
+        -- close buffer + hide terminal buffer
+        ["<leader>c"] = {
+           function()
+              require("core.utils").close_buffer()
+           end,
+           "   close buffer",
+        },
+    },
   },
-
-
 
   nvimtree = {
     n = {

@@ -1,4 +1,3 @@
-
 local overrides = require "custom.plugins.overrides"
 
 return {
@@ -11,6 +10,10 @@ return {
       require "plugins.configs.lspconfig"
       require "custom.plugins.lspconfig"
     end,
+  },
+
+  ["github/copilot.vim"] = {
+    after = "nvim-lspconfig",
   },
 
   -- overrde plugin configs
@@ -45,4 +48,3 @@ return {
   -- remove plugin
   -- ["hrsh7th/cmp-path"] = false,
 }
-

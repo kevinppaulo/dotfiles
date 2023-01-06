@@ -6,7 +6,7 @@ M.treesitter = {
     "lua",
     "html",
     "css",
-    "typescript",
+    "javascript",
     "c",
   },
 }
@@ -42,4 +42,3 @@ M.nvimtree = {
 }
 
 return M
-

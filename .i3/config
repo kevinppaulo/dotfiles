@@ -8,7 +8,7 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 0
+default_border normal
 # default_border none
 # default_floating_border normal
 default_floating_border none
@@ -403,6 +403,7 @@ bindsym $mod+Shift+g mode "$mode_gaps"
 
 bindsym $mod+Ctrl+comma gaps outer current set 140
 bindsym $mod+Ctrl+period gaps outer current set 30
+bindsym $mod+Ctrl+0 gaps outer current set 0
 
 
 mode "$mode_gaps" {

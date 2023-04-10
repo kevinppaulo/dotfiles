@@ -7,7 +7,17 @@ M.treesitter = {
     "html",
     "css",
     "javascript",
+    "typescript",
+    "tsx",
     "c",
+    "markdown",
+    "markdown_inline",
+  },
+  indent = {
+    enable = true,
+    -- disable = {
+    --   "python"
+    -- },
   },
 }
 
@@ -22,6 +32,11 @@ M.mason = {
     "html-lsp",
     "typescript-language-server",
     "deno",
+    "prettier",
+
+    -- c/cpp stuff
+    "clangd",
+    "clang-format",
   },
 }
 
